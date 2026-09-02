@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛰️ Open-Source Satellite Platform
+# 🛰️ Open-Source Satellite Community
 
 **Open satellite software, resources, and knowledge.**
 
