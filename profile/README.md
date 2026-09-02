@@ -2,12 +2,14 @@
 
 # 🛰️ Open-Source Satellite Platform
 
-**Open satellite software, resources, and knowledge.**
+### Open satellite software, resources, and knowledge.
 
 An open-source community initiated by **BUPT**, focused on  
-satellite computing, software, applications, and open collaboration.
+**satellite computing · software · applications · open collaboration**
 
-[💬 Discussions](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
+<br>
+
+[![Discussions](https://img.shields.io/badge/💬_Discussions-Join_Community-2ea44f?style=for-the-badge)](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
 
 </div>
 
@@ -15,13 +17,38 @@ satellite computing, software, applications, and open collaboration.
 
 ## 🚀 What We Maintain
 
-| Area | Description |
-| --- | --- |
-| 📚 **Satellite Resources** | Papers, open-source tools, datasets, and technical resources related to satellites and satellite computing |
-| 📊 **Evaluation Platform** | Tools and platforms for evaluating software, computational workloads, and satellite computing tasks |
-| 💻 **Application Software** | Open-source applications and example code designed for, or capable of, running on satellites |
+### 📚 Satellite Resources
 
-Our repositories are continuously updated as new resources, tools, and projects become available.
+> **Papers · Open-Source Tools · Datasets · Technical Resources**
+
+A continuously updated collection of resources related to satellites and satellite computing.
+
+- Top conference and journal papers
+- Open-source satellite tools and frameworks
+- Useful datasets and technical references
+
+<br>
+
+### 📊 Software Evaluation Platform
+
+> **Evaluation · Benchmarking · Workloads · Experiments**
+
+Tools and platforms for evaluating software and computational workloads in satellite environments.
+
+- Performance evaluation
+- Computational experiments
+- Workload analysis
+- Satellite computing research
+
+<br>
+
+### 💻 Application Software
+
+> **Satellite Applications · Onboard Software · Example Code**
+
+Open-source applications and example code designed for, or capable of, running on satellites.
+
+These projects provide reusable references and building blocks for future satellite applications.
 
 ---
 
@@ -29,18 +56,24 @@ Our repositories are continuously updated as new resources, tools, and projects 
 
 Our **GitHub Discussions** is the main place for community communication and knowledge sharing.
 
-We regularly share:
+We regularly post:
 
-- 📢 Project news and updates
-- 📚 Research, papers, and technical knowledge
-- 🔧 Interesting open-source tools and projects
-- 🛰️ Satellite-related resources and applications
+- 📢 **News & Updates** — project announcements and progress
+- 📚 **Research & Knowledge** — papers and technical content
+- 🔧 **Open-Source Tools** — useful software and frameworks
+- 🛰️ **Satellite Resources** — datasets, applications, and references
 
-> 💡 Have an idea, request, or useful resource to share?
+> 💡 **Have an idea, request, or useful resource?**
 
-Feel free to start a discussion. You are also welcome to introduce and promote your own **satellite-related tools, software, datasets, research projects, or open-source work**.
+You are welcome to start a discussion and share your thoughts.
 
-👉 **[Join the Discussions](https://github.com/orgs/Satellite-OSS-BUPT/discussions)**
+You can also introduce your own **satellite-related tools, software, datasets, research projects, or open-source work**.
+
+<div align="center">
+
+### 👉 [Join the Discussions](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
+
+</div>
 
 ---
 
@@ -48,20 +81,19 @@ Feel free to start a discussion. You are also welcome to introduce and promote y
 
 Contributions from researchers, developers, students, and satellite enthusiasts are welcome.
 
-You can contribute by:
-
-- 💬 Sharing ideas or requests in **Discussions**
-- 📚 Recommending papers, datasets, tools, or projects
-- 🚀 Introducing your satellite-related open-source work
-- 🐛 Reporting issues or suggesting improvements
-- 💻 Contributing code to our repositories
+- 💬 Share ideas or requests
+- 📚 Recommend papers, tools, or datasets
+- 🚀 Introduce your open-source work
+- 🐛 Report issues or suggest improvements
+- 💻 Contribute code
 
 ---
 
 <div align="center">
 
-### Explore · Share · Build for Space 🛰️
+### 🌌 Explore · Share · Build for Space
 
-Building an open ecosystem for **satellite software, computing, and applications**.
+Building an open ecosystem for  
+**satellite software, computing, and applications.**
 
 </div>
