@@ -4,7 +4,7 @@
 
 **Open satellite software, resources, and knowledge.**
 
-An open-source community initiated by **BUPT**, focused on satellite computing, software, applications, and open collaboration.
+An open-source community called OPENSAT, focused on satellite computing, software, applications, and open collaboration.
 
 [![Discussions](https://img.shields.io/badge/Discussions-Join%20the%20Community-2ea44f?style=flat-square&logo=github)](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
 
