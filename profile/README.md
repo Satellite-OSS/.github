@@ -22,16 +22,34 @@ As [our ASE 2026 study](https://github.com/Satellite-OSS/SatellitePaper) of the 
 
 ---
 
-## 🚀 What We Maintain
+## 🚀 Explore OPENSAT
 
-| Area | What We Provide |
-| --- | --- |
-| 📄 **[Research Papers](https://github.com/Satellite-OSS/SatellitePaper)**                 | Satellite-related papers from top conferences and journals                                               |
-| 🗂️ **[Satellite Datasets](https://github.com/Satellite-OSS/SatelliteDataset)**            | Curated open satellite remote-sensing datasets with descriptions, applications, and access links         |
-| 📚 **[Satellite Resources](https://github.com/Satellite-OSS/SatelliteResource)**          | Standards, technical specifications, research reports, engineering guidelines, and educational resources |
-| ⚙️ **[Operating Systems](https://github.com/Satellite-OSS/SatelliteOperatingSystem)**     | Open-source operating systems, standards, and resources for satellite onboard computers                  |
-| 📊 **[Evaluation Platform](https://github.com/Satellite-OSS/SoftwareEvaluationPlatform)** | Tools for workload evaluation, benchmarking, experiments, and satellite computing research               |
-| 💻 **[Application Software](https://github.com/Satellite-OSS/ApplicationSoftwareCode)**   | Open-source applications and example code designed for satellite and onboard environments                |
+<table>
+  <tr>
+    <td>📄 <strong><a href="https://github.com/Satellite-OSS/SatellitePaper">Research Papers</a></strong></td>
+    <td>Satellite-related papers from top conferences and journals</td>
+  </tr>
+  <tr>
+    <td>🗂️ <strong><a href="https://github.com/Satellite-OSS/SatelliteDataset">Satellite Datasets</a></strong></td>
+    <td>Curated open satellite remote-sensing datasets with descriptions, applications, and access links</td>
+  </tr>
+  <tr>
+    <td>📚 <strong><a href="https://github.com/Satellite-OSS/SatelliteResource">Satellite Resources</a></strong></td>
+    <td>Standards, technical specifications, research reports, engineering guidelines, and educational resources</td>
+  </tr>
+  <tr>
+    <td>⚙️ <strong><a href="https://github.com/Satellite-OSS/SatelliteOperatingSystem">Operating Systems</a></strong></td>
+    <td>Open-source operating systems, standards, and resources for satellite onboard computers</td>
+  </tr>
+  <tr> 
+    <td>📊 <strong><a href="https://github.com/Satellite-OSS/SoftwareEvaluationPlatform">Evaluation Platform</a></strong></td>
+    <td>Tools for workload evaluation, benchmarking, experiments, and satellite computing research</td>
+  </tr>
+  <tr>
+    <td>💻 <strong><a href="https://github.com/Satellite-OSS/ApplicationSoftwareCode">Application Software</a></strong></td>
+    <td>Open-source applications and example code designed for satellite and onboard environments</td>
+  </tr>
+</table>
 
 Our repositories are continuously updated with new resources, tools, and projects.
 
