@@ -11,13 +11,15 @@ An open-source community called OPENSAT, focused on satellite computing, softwar
 </div>
 
 ---
+
 ## 🌍 Why Open Source?
 
 Satellite development sits at the intersection of aerospace, communications, and computing, and each part demands deep, specialized expertise. As constellations scale and computation moves into orbit, no single lab or company can master it all alone. Progress depends on **shared code, shared data, and shared lessons**, and that is exactly what open source does best.
 
-As [our ASE 2026 study of the open-source satellite software landscape](https://github.com/Satellite-OSS/SatellitePaper) shows, open source has already proven itself in space. Flight software frameworks such as NASA's [cFS](https://github.com/nasa/cFS) and JPL's [F´](https://github.com/nasa/fprime) have flown on dozens of missions, from CubeSats to the Ingenuity Mars Helicopter; open simulation platforms let anyone model orbits, constellations, and onboard workloads without launching anything; community ground station networks like [SatNOGS](https://satnogs.org/) span the globe; and in-orbit experiment platforms such as the [Tiansuan Constellation](http://www.tiansuan.org.cn/) initiated by BUPT now open the code, data, and systems of real satellites to researchers everywhere. **Yet the ecosystem is still in its early days**: resources are scattered across communities, shared datasets and benchmarks are scarce, ready-to-run onboard applications are rare, and published results are hard to reproduce.
+As [our ASE 2026 study](https://github.com/Satellite-OSS/SatellitePaper) of the open-source satellite software landscape shows, open source has already proven itself in space. Flight software frameworks such as NASA's [cFS](https://github.com/nasa/cFS) and JPL's [F´](https://github.com/nasa/fprime) have flown on dozens of missions, from CubeSats to the Ingenuity Mars Helicopter; open simulation platforms let anyone model orbits, constellations, and onboard workloads without launching anything; community ground station networks like [SatNOGS](https://satnogs.org/) span the globe; and in-orbit experiment platforms such as the [Tiansuan Constellation](http://www.tiansuan.org.cn/) initiated by BUPT now open the code, data, and systems of real satellites to researchers everywhere. **Yet the ecosystem is still in its early days**: resources are scattered across communities, shared datasets and benchmarks are scarce, ready-to-run onboard applications are rare, and published results are hard to reproduce.
 
 **That is why OPENSAT exists**: to lower the barrier to satellite computing by gathering papers, datasets, tools, and runnable software in one open place, so that anyone can learn, reproduce, and build on each other's work.
+
 ---
 
 ## 🚀 What We Maintain
