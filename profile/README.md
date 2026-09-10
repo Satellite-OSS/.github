@@ -26,9 +26,12 @@ As [our ASE 2026 study](https://github.com/Satellite-OSS/SatellitePaper) of the 
 
 | Area | What We Provide |
 | --- | --- |
-| 📚 **Satellite Resources** | Top conference papers, open-source tools, datasets, frameworks, and technical resources |
-| 📊 **Evaluation Platform** | Tools for workload evaluation, benchmarking, experiments, and satellite computing research |
-| 💻 **Application Software** | Open-source applications and example code designed for satellite and onboard environments |
+| 📄 **Research Papers**      | Satellite-related papers from top conferences and journals                                               |
+| 🗂️ **Satellite Datasets**   | Curated open satellite remote-sensing datasets with descriptions, applications, and access links         |
+| 📚 **Satellite Resources**  | Standards, technical specifications, research reports, engineering guidelines, and educational resources |
+| ⚙️ **Operating Systems**    | Open-source operating systems, standards, and resources for satellite onboard computers                  |
+| 📊 **Evaluation Platform**  | Tools for workload evaluation, benchmarking, experiments, and satellite computing research               |
+| 💻 **Application Software** | Open-source applications and example code designed for satellite and onboard environments                |
 
 Our repositories are continuously updated with new resources, tools, and projects.
 
