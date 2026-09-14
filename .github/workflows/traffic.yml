@@ -45,10 +45,21 @@ jobs:
           static_list: Satellite-OSS/SatellitePaper,Satellite-OSS/SatelliteDataset,Satellite-OSS/SatelliteResource,Satellite-OSS/SatelliteOperatingSystem,Satellite-OSS/SoftwareEvaluationPlatform,Satellite-OSS/ApplicationSoftwareCode
           traffic_branch: main
 
+      - name: Generate combined repository views badge
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          total = sum(json.loads(p.read_text())['count']
+                      for p in Path('.main/traffic').glob('*/traffic_views.json'))
+          badge = {'schemaVersion': 1, 'label': 'Repo views',
+                   'message': str(total), 'color': 'brightgreen'}
+          Path('.main/traffic/repo-views.json').write_text(json.dumps(badge, indent=2) + '\n')
+
       - name: Save traffic data and badges
         shell: bash
         run: |
-          # The action clones main into .main; publish only its per-repository output.
+          # Publish repository histories and the combined badge from the temporary clone.
           mkdir -p traffic
           cp -R .main/traffic/. traffic/
           git add traffic
