@@ -13,30 +13,50 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  satellite-paper:
+  repositories:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - name: Collect SatellitePaper traffic
-        uses: yi-Xu-0100/traffic-to-badge@6e7656202ad370afe7e80465c32ee367324ab4fc # v1.4.0
+      - name: Check out Traffic to Badge
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: yi-Xu-0100/traffic-to-badge
+          ref: 6e7656202ad370afe7e80465c32ee367324ab4fc # v1.4.0
+          path: .traffic-action
+          persist-credentials: false
+
+      - name: Store per-repository history under traffic
+        shell: python
+        run: |
+          from pathlib import Path
+          bundle = Path('.traffic-action/dist/index.js')
+          source = bundle.read_text()
+          old = 'join(traffic_branch_path, `traffic-${static_list[i]}`)'
+          new = 'join(traffic_branch_path, "traffic", static_list[i])'
+          assert source.count(old) == 1, 'Upstream traffic path changed'
+          bundle.write_text(source.replace(old, new))
+
+      - name: Collect repository traffic
+        uses: ./.traffic-action
         with:
           my_token: ${{ secrets.TRAFFIC_TOKEN }}
-          static_list: Satellite-OSS/SatellitePaper
+          static_list: Satellite-OSS/SatellitePaper,Satellite-OSS/SatelliteDataset,Satellite-OSS/SatelliteResource,Satellite-OSS/SatelliteOperatingSystem,Satellite-OSS/SoftwareEvaluationPlatform,Satellite-OSS/ApplicationSoftwareCode
           traffic_branch: main
 
       - name: Save traffic data and badges
         shell: bash
         run: |
           # The action clones main into .main; publish only its per-repository output.
-          cp -R .main/traffic-SatellitePaper .
-          git add traffic-SatellitePaper
+          mkdir -p traffic
+          cp -R .main/traffic/. traffic/
+          git add traffic
           if git diff --cached --quiet; then
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Update SatellitePaper traffic'
+          git commit -m 'Update repository traffic'
           git pull --rebase origin main
           git push origin HEAD:main
