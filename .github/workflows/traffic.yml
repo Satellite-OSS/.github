@@ -1,0 +1,42 @@
+name: Repository traffic
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 2 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repository-traffic
+  cancel-in-progress: false
+
+jobs:
+  satellite-paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Collect SatellitePaper traffic
+        uses: yi-Xu-0100/traffic-to-badge@6e7656202ad370afe7e80465c32ee367324ab4fc # v1.4.0
+        with:
+          my_token: ${{ secrets.TRAFFIC_TOKEN }}
+          static_list: Satellite-OSS/SatellitePaper
+          traffic_branch: main
+
+      - name: Save traffic data and badges
+        shell: bash
+        run: |
+          # The action clones main into .main; publish only its per-repository output.
+          cp -R .main/traffic-SatellitePaper .
+          git add traffic-SatellitePaper
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Update SatellitePaper traffic'
+          git pull --rebase origin main
+          git push origin HEAD:main
