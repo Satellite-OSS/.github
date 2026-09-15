@@ -55,7 +55,9 @@ jobs:
           done
 
       - name: Generate repository and community badges
-        run: python scripts/traffic-badges.py
+        run: |
+          python -B scripts/test_traffic_badges.py
+          python scripts/traffic-badges.py
 
       - name: Commit changed statistics only
         shell: bash
