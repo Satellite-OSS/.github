@@ -34,7 +34,7 @@ jobs:
       - name: Install upstream dependencies
         run: |
           # Upstream pandas 2.1.1 requires the NumPy 1.x binary ABI.
-          python -m pip install 'numpy<2' -r .github-repo-stats/requirements-fa.txt
+          python -m pip install 'numpy<2' 'carbonplan-styles==0.4.2' -r .github-repo-stats/requirements-fa.txt
           sudo apt-get update -qq
           sudo apt-get install -y pandoc
 
