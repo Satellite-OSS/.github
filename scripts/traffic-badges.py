@@ -1,32 +1,42 @@
-"""Render README badges from github-repo-stats' daily aggregate CSVs."""
+"""Sum github-repo-stats CSVs by date and render the README badges."""
 import csv
-import json
+from collections import defaultdict
 from pathlib import Path
 from urllib.parse import urlencode
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 from xml.etree import ElementTree
 
 
+def render(output, label, count):
+    expected = f'{label}: {count}'
+    if output.exists() and ElementTree.parse(output).getroot().attrib.get('aria-label') == expected:
+        return
+    query = urlencode({'label': label, 'message': str(count), 'color': 'brightgreen',
+                       'logo': 'github', 'style': 'flat-square'})
+    request = Request('https://img.shields.io/static/v1?' + query, headers={'User-Agent': 'Satellite-OSS-traffic'})
+    with urlopen(request, timeout=30) as response:
+        svg = response.read()
+    if ElementTree.fromstring(svg).attrib.get('aria-label') != expected:
+        raise ValueError(f'Unexpected badge for {output}')
+    output.write_bytes(svg)
+
+
 def generate(root):
-    total = 0
-    for aggregate in sorted(root.glob('*/views_clones_aggregate.csv')):
-        with aggregate.open(newline='') as stream:
-            count = sum(int(row['views_total']) for row in csv.DictReader(stream))
-        total += count
-        output = aggregate.parent / 'views.svg'
-        if output.exists() and ElementTree.parse(output).getroot().attrib.get('aria-label') == f'views: {count}':
+    daily = defaultdict(lambda: {'clones_total': 0, 'views_total': 0})
+    for aggregate in sorted(root.glob('*.csv')):
+        if aggregate.name == 'sum.csv':
             continue
-        query = urlencode({'label': 'views', 'message': str(count),
-                           'color': 'brightgreen', 'logo': 'github'})
-        with urlopen('https://img.shields.io/static/v1?' + query, timeout=30) as response:
-            svg = response.read()
-        label = ElementTree.fromstring(svg).attrib.get('aria-label')
-        if label != f'views: {count}':
-            raise ValueError(f'Unexpected badge for {aggregate}: {label}')
-        output.write_bytes(svg)
-    badge = {'schemaVersion': 1, 'label': 'Repo views',
-             'message': str(total), 'color': 'brightgreen'}
-    (root / 'repo-views.json').write_text(json.dumps(badge, indent=2) + '\n')
+        with aggregate.open(newline='') as stream:
+            rows = list(csv.DictReader(stream))
+        for row in rows:
+            for metric in ('clones_total', 'views_total'):
+                daily[row['time_iso8601']][metric] += int(row[metric])
+        render(aggregate.with_suffix('.svg'), 'views', sum(int(r['views_total']) for r in rows))
+    with (root / 'sum.csv').open('w', newline='') as stream:
+        writer = csv.DictWriter(stream, fieldnames=['time_iso8601', 'clones_total', 'views_total'], lineterminator='\n')
+        writer.writeheader()
+        writer.writerows({'time_iso8601': day, **daily[day]} for day in sorted(daily))
+    render(root / 'sum.svg', 'Repo views', sum(row['views_total'] for row in daily.values()))
 
 
 if __name__ == '__main__':

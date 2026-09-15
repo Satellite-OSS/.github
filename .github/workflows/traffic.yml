@@ -34,7 +34,7 @@ jobs:
       - name: Install upstream dependencies
         run: |
           # Upstream pandas 2.1.1 requires the NumPy 1.x binary ABI.
-          python -m pip install 'numpy<2' 'carbonplan-styles==0.4.2' -r .github-repo-stats/requirements-fa.txt
+          python -m pip install 'numpy<2' 'carbonplan-styles==0.4.2' 'matplotlib<3.9' -r .github-repo-stats/requirements-fa.txt
           sudo apt-get update -qq
           sudo apt-get install -y pandoc
 
@@ -43,15 +43,16 @@ jobs:
           GHRS_GITHUB_API_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
         shell: bash
         run: |
-          for directory in traffic/*/; do
-            repository="Satellite-OSS/$(basename "$directory")"
+          for aggregate in traffic/*.csv; do
+            [ "$aggregate" = traffic/sum.csv ] && continue
+            repository="Satellite-OSS/$(basename "$aggregate" .csv)"
             scratch=$(mktemp -d)
             python .github-repo-stats/fetch.py "$repository" --snapshot-directory "$scratch/snapshots"
             python .github-repo-stats/analyze.py "$repository" "$scratch/snapshots" \
               --resources-directory .github-repo-stats/resources \
               --output-directory "$scratch/report" \
-              --views-clones-aggregate-inpath "${directory}views_clones_aggregate.csv" \
-              --views-clones-aggregate-outpath "${directory}views_clones_aggregate.csv"
+              --views-clones-aggregate-inpath "$aggregate" \
+              --views-clones-aggregate-outpath "$aggregate"
           done
 
       - name: Generate repository and community badges
