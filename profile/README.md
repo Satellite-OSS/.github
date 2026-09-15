@@ -6,7 +6,7 @@
 
 An open-source community called OPENSAT, focused on satellite computing, software, applications, and open collaboration.
 
-![Profile views](https://komarev.com/ghpvc/?username=Satellite-OSS&style=flat-square&color=brightgreen&label=Profile+views&abbreviated=true) [![Repo views](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FSatellite-OSS%2F.github%2Fmain%2Ftraffic%2Frepo-views.json&style=flat-square)](https://github.com/Satellite-OSS/.github/tree/main/traffic "Cumulative recorded views across our six repositories; updated daily") [![Discussions](https://img.shields.io/badge/Discussions-Join%20the%20Community-2ea44f?style=flat-square&logo=github)](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
+![Profile views](https://komarev.com/ghpvc/?username=Satellite-OSS&style=flat-square&color=brightgreen&label=Profile+views&abbreviated=true) [![Repo views](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FSatellite-OSS%2F.github%2Fmain%2Ftraffic%2Frepo-views.json&style=flat-square)](https://github.com/Satellite-OSS/.github/tree/main/traffic "Cumulative recorded views across our six repositories; updated hourly") [![Discussions](https://img.shields.io/badge/Discussions-Join%20the%20Community-2ea44f?style=flat-square&logo=github)](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
 
 </div>
 

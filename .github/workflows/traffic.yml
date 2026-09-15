@@ -3,7 +3,7 @@ name: Repository traffic
 on:
   workflow_dispatch:
   schedule:
-    - cron: '23 2 * * *'
+    - cron: '23 * * * *'
 
 permissions:
   contents: write
@@ -15,55 +15,54 @@ concurrency:
 jobs:
   repositories:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
-      - name: Check out Traffic to Badge
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Check out github-repo-stats
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          repository: yi-Xu-0100/traffic-to-badge
-          ref: 6e7656202ad370afe7e80465c32ee367324ab4fc # v1.4.0
-          path: .traffic-action
+          repository: jgehrcke/github-repo-stats
+          ref: ff48771cbb4324c3b77490bbfc26d6a5f3831cdb
+          path: .github-repo-stats
           persist-credentials: false
 
-      - name: Store per-repository history under traffic
-        shell: python
-        run: |
-          from pathlib import Path
-          bundle = Path('.traffic-action/dist/index.js')
-          source = bundle.read_text()
-          old = 'join(traffic_branch_path, `traffic-${static_list[i]}`)'
-          new = 'join(traffic_branch_path, "traffic", static_list[i])'
-          assert source.count(old) == 1, 'Upstream traffic path changed'
-          bundle.write_text(source.replace(old, new))
-
-      - name: Collect repository traffic
-        uses: ./.traffic-action
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
-          my_token: ${{ secrets.TRAFFIC_TOKEN }}
-          static_list: Satellite-OSS/SatellitePaper,Satellite-OSS/SatelliteDataset,Satellite-OSS/SatelliteResource,Satellite-OSS/SatelliteOperatingSystem,Satellite-OSS/SoftwareEvaluationPlatform,Satellite-OSS/ApplicationSoftwareCode
-          traffic_branch: main
+          python-version: '3.11'
 
-      - name: Generate combined repository views badge
-        shell: python
+      - name: Install upstream dependencies
         run: |
-          import json
-          from pathlib import Path
-          total = sum(json.loads(p.read_text())['count']
-                      for p in Path('.main/traffic').glob('*/traffic_views.json'))
-          badge = {'schemaVersion': 1, 'label': 'Repo views',
-                   'message': str(total), 'color': 'brightgreen'}
-          Path('.main/traffic/repo-views.json').write_text(json.dumps(badge, indent=2) + '\n')
+          # Upstream pandas 2.1.1 requires the NumPy 1.x binary ABI.
+          python -m pip install 'numpy<2' -r .github-repo-stats/requirements-fa.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc
 
-      - name: Save traffic data and badges
+      - name: Collect and aggregate repository traffic
+        env:
+          GHRS_GITHUB_API_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
         shell: bash
         run: |
-          # Publish repository histories and the combined badge from the temporary clone.
-          mkdir -p traffic
-          cp -R .main/traffic/. traffic/
+          for directory in traffic/*/; do
+            repository="Satellite-OSS/$(basename "$directory")"
+            scratch=$(mktemp -d)
+            python .github-repo-stats/fetch.py "$repository" --snapshot-directory "$scratch/snapshots"
+            python .github-repo-stats/analyze.py "$repository" "$scratch/snapshots" \
+              --resources-directory .github-repo-stats/resources \
+              --output-directory "$scratch/report" \
+              --views-clones-aggregate-inpath "${directory}views_clones_aggregate.csv" \
+              --views-clones-aggregate-outpath "${directory}views_clones_aggregate.csv"
+          done
+
+      - name: Generate repository and community badges
+        run: python scripts/traffic-badges.py
+
+      - name: Commit changed statistics only
+        shell: bash
+        run: |
           git add traffic
           if git diff --cached --quiet; then
+            echo 'Statistics unchanged; no commit needed.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
