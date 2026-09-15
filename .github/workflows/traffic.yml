@@ -2,8 +2,6 @@ name: Repository traffic
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '23 * * * *'
 
 permissions:
   contents: write
