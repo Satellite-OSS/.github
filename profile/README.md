@@ -6,7 +6,7 @@
 
 An open-source community called OPENSAT, focused on satellite computing, software, applications, and open collaboration.
 
-![Profile views](https://komarev.com/ghpvc/?username=Satellite-OSS&style=flat-square&color=brightgreen&label=Profile+views&abbreviated=true) [![Repo views](https://raw.githubusercontent.com/Satellite-OSS/.github/main/traffic/sum.svg)](https://github.com/Satellite-OSS/.github/tree/main/traffic "Cumulative recorded views across our six repositories; updated hourly") [![Discussions](https://img.shields.io/badge/Discussions-Join%20the%20Community-2ea44f?style=flat-square&logo=github)](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
+![Profile views](https://komarev.com/ghpvc/?username=Satellite-OSS&style=flat-square&color=brightgreen&label=Profile+views&abbreviated=true) [![Repo views](https://raw.githubusercontent.com/Satellite-OSS/.github/main/traffic/sum.svg)](https://github.com/Satellite-OSS/.github/tree/main/traffic "Cumulative recorded views across our seven repositories; updated hourly") [![Discussions](https://img.shields.io/badge/Discussions-Join%20the%20Community-2ea44f?style=flat-square&logo=github)](https://github.com/orgs/Satellite-OSS-BUPT/discussions)
 
 </div>
 
@@ -48,6 +48,10 @@ As [our ASE 2026 study](https://github.com/Satellite-OSS/SatellitePaper) of the 
   <tr>
     <td>💻 <strong><a href="https://github.com/Satellite-OSS/ApplicationSoftwareCode">Application Software</a></strong></td>
     <td>Open-source applications and example code designed for satellite and onboard environments</td>
+  </tr>
+  <tr>
+    <td>🕹️ <strong><a href="https://github.com/Satellite-OSS/SatelliteSimulationSoftware">Simulation Software</a></strong></td>
+    <td>Open-source tools for simulating satellite networks, orbital dynamics, and RF and electromagnetic systems</td>
   </tr>
 </table>
 
